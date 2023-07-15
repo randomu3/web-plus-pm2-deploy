@@ -17,7 +17,7 @@ module.exports = {
 			            ref  : "origin/master",
 			            repo : "git@github.com:randomu3/web-plus-pm2-deploy.git", // Замените на свой репозиторий
 			            path : "/home/demiz/web-plus-pm2-deploy/backend", // Путь до папки с проектом
-			            "post-deploy" : "npm install && pm2 reload ecosystem.config.js --env production"
+			      	"post-deploy" : "npm install && pm2 reload /home/demiz/web-plus-pm2-deploy/backend/ecosystem.config.js --env production"
 			          }
 		    }
 }
