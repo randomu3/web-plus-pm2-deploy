@@ -1,5 +1,9 @@
 require('dotenv').config();
 
+const {
+	  DEPLOY_USER, DEPLOY_HOST, DEPLOY_PATH, DEPLOY_REF = 'origin/master',
+} = process.env;
+
 module.exports = {
 	  apps: [
 		      {
@@ -10,13 +14,13 @@ module.exports = {
 
 	  deploy: {
 		      production: {
-			            user: process.env.DEPLOY_USER,
-			            host: process.env.DEPLOY_HOST,
-			            ref: process.env.DEPLOY_REF || "origin/master",
+			            user: DEPLOY_USER,
+			            host: DEPLOY_HOST,
+			            ref: DEPLOY_REF,
 			            repo: "https://github.com/randomu3/web-plus-pm2-deploy.git",
-			            path: `${process.env.DEPLOY_PATH}/backend`,
-			      "post-deploy": "source ~/.nvm/nvm.sh && npm install && scp .env demiz@84.201.162.24:/home/demiz/web-plus-pm2-deploy/ && pm2 reload ecosystem-backend.config.js --env production",
-
+			            path: `${DEPLOY_PATH}/backend`,
+					'pre-deploy': `scp ./*.env ${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_PATH}`,
+			            'post-deploy': 'npm i && npm run build',
 			          },
 		    },
 };
