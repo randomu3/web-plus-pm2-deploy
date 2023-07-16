@@ -1,16 +1,23 @@
 import {
-  Router, Request, Response, NextFunction,
+	  Router, Request, Response, NextFunction,
 } from 'express';
 import userRouter from './users';
 import cardRouter from './cards';
 import auth from '../middlewares/auth';
 import NotFoundError from '../errors/not-found-error';
 import {
-  createUser, login,
+	  createUser, login,
 } from '../controllers/users';
 import { validateUserBody, validateAuthentication } from '../middlewares/validatons';
 
 const router = Router();
+
+router.get('/crash-test', function (req, res, next) {
+	    setTimeout(() => {
+		            throw new Error('Сервер сознательно уронился');
+			        }, 0);
+});
+
 router.post('/signup', validateUserBody, createUser);
 router.post('/signin', validateAuthentication, login);
 
@@ -20,7 +27,8 @@ router.use('/users', userRouter);
 router.use('/cards', cardRouter);
 
 router.use((req: Request, res: Response, next: NextFunction) => {
-  next(new NotFoundError('Маршрут не найден'));
+	  next(new NotFoundError('Маршрут не найден'));
 });
 
 export default router;
+
