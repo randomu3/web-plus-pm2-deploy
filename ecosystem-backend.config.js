@@ -15,8 +15,8 @@ module.exports = {
 			            ref: process.env.DEPLOY_REF || "origin/master",
 			            repo: "https://github.com/randomu3/web-plus-pm2-deploy.git",
 			            path: `${process.env.DEPLOY_PATH}/backend`,
-			            "post-deploy":
-			              "npm install && cp ../.env . && pm2 reload ecosystem-backend.config.js --env production",
+			      "post-deploy": "source ~/.nvm/nvm.sh && npm install && cp ../.env . && pm2 reload ecosystem-backend.config.js --env production",
+
 			          },
 		    },
 };
