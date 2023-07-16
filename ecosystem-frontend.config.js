@@ -14,11 +14,11 @@ module.exports = {
 
 	  deploy: {
 		      production: {
-			            user: process.env.DEPLOY_USER,
-			            host: process.env.DEPLOY_HOST,
-			            ref: process.env.DEPLOY_REF || "origin/master",
-			            repo: "https://github.com/randomu3/web-plus-pm2-deploy.git",
-			            path: `${process.env.DEPLOY_PATH}/frontend`,
+			            user: 'demiz',
+			            host: '84.201.162.24',
+			            ref: 'origin/master',
+			            repo: 'https://github.com/randomu3/web-plus-pm2-deploy.git',
+			            path: '/home/demiz/web-plus-pm2-deploy/frontend',
 			            "post-deploy":
 			              "npm install && npm run build && pm2 startOrRestart ecosystem.config.js",
 			          },
