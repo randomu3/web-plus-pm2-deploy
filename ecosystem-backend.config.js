@@ -4,7 +4,7 @@ module.exports = {
 	  apps: [
 		      {
 			            name: "backend-service",
-			            script: "./backend/app.js",
+			            script: "./backend/dist/app.js",
 			          },
 		    ],
 

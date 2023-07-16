@@ -6,7 +6,7 @@ module.exports = {
 			            name: "frontend-service",
 			            script: "serve",
 			            env: {
-					            PM2_SERVE_PATH: './build',
+					            PM2_SERVE_PATH: '.frontend/build',
 					            PM2_SERVE_PORT: 8000,
 					          },
 			          },
